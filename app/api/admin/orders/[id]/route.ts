@@ -77,7 +77,21 @@ export async function PUT(
       );
     }
 
-    return NextResponse.json(data);
+    // Fetch customer email for the order
+    try {
+      const { data: userData } = await adminSupabase.auth.admin.getUserById(data.user_id);
+      const orderWithEmail = {
+        ...data,
+        customer_email: userData?.user?.email || null,
+      };
+      return NextResponse.json(orderWithEmail);
+    } catch (err) {
+      console.error(`Error fetching email for user ${data.user_id}:`, err);
+      return NextResponse.json({
+        ...data,
+        customer_email: null,
+      });
+    }
   } catch (error: any) {
     console.error('API route error:', error);
     return NextResponse.json(

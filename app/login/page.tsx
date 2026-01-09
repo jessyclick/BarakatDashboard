@@ -45,7 +45,7 @@ export default function LoginPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="space-y-1 mb-8 text-xs uppercase tracking-[0.5em] text-[#8c8c8c]">
-              <p>Barakat Jewerly</p>
+              <p>Barakat Jewelry</p>
             </div>
             <h1 className="text-2xl font-light text-white mb-4 uppercase tracking-[0.3em]">
               {isSignUp ? 'Create account' : 'Welcome'}
@@ -69,7 +69,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="font-engravers block w-full pl-4 pr-4 py-3 border border-[#1c1c1d] bg-[#050505] text-white placeholder-[#8c8c8c] focus:outline-none focus:border-[#d4b196] transition-colors text-sm"
+                  className="auth-input font-engravers block w-full pl-4 pr-4 py-3 border border-[#1c1c1d] bg-[#050505] text-white placeholder-[#8c8c8c] focus:outline-none focus:border-[#d4b196] transition-colors text-sm"
                 />
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="font-engravers block w-full pl-4 pr-4 py-3 border border-[#1c1c1d] bg-[#050505] text-white placeholder-[#8c8c8c] focus:outline-none focus:border-[#d4b196] transition-colors text-sm"
+                  className="auth-input font-engravers block w-full pl-4 pr-4 py-3 border border-[#1c1c1d] bg-[#050505] text-white placeholder-[#8c8c8c] focus:outline-none focus:border-[#d4b196] transition-colors text-sm"
                 />
               </div>
             </div>

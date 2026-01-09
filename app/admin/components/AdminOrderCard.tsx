@@ -10,6 +10,7 @@ type Order = {
   status: string;
   created_at: string;
   user_id: string;
+  customer_email?: string;
   jewelry_type?: string;
   material?: string;
   carat?: string;
@@ -58,10 +59,12 @@ export function AdminOrderCard({ order, onUpdate }: { order: Order; onUpdate: ()
           )}
         </div>
 
-        <div className="space-y-2 text-xs uppercase tracking-[0.35em] text-[#6f6f6f]">
+        <div className="space-y-2 text-xs tracking-[0.35em] text-[#6f6f6f]">
           <p className="flex items-center gap-3">
             <span>Client:</span>
-            <span className="tracking-[0.2em] text-white">{order.user_id.slice(0, 8)}...</span>
+            <span className="tracking-[0.2em] text-white">
+              {order.customer_email ? order.customer_email : `${order.user_id.slice(0, 8)}...`}
+            </span>
           </p>
           {order.material && (
             <p className="flex items-center gap-3">

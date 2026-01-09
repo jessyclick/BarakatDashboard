@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState, useMemo } from 'react';
 import { AdminOrderCard } from './components/AdminOrderCard';
+import { CreateOrderModal } from './components/CreateOrderModal';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
 import { isAdminEmail } from '@/utils/admin';
@@ -23,6 +24,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
 
@@ -149,9 +151,30 @@ export default function AdminPage() {
         <section className="space-y-8">
           <div className="flex items-center justify-between text-xs uppercase tracking-[0.5em] text-[#bfbfbf]">
             <p>All orders</p>
-            <span>
-              {orders.length} {orders.length === 1 ? 'order' : 'orders'}
-            </span>
+            <div className="flex items-center gap-4">
+              <span>
+                {orders.length} {orders.length === 1 ? 'order' : 'orders'}
+              </span>
+              <button
+                onClick={() => setIsCreateModalOpen(true)}
+                className="flex h-10 w-10 items-center justify-center border border-[#1c1c1d] text-[#adadad] transition-colors hover:border-[#d4b196] hover:text-white"
+                aria-label="Create new order"
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
 
           {error && (
@@ -175,6 +198,12 @@ export default function AdminPage() {
           )}
         </section>
       </div>
+
+      <CreateOrderModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSuccess={fetchOrders}
+      />
     </div>
   );
 }
