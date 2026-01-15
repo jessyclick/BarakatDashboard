@@ -54,10 +54,10 @@
 }
 
 input {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: 'Inter', sans-serif;
 }
 .auth-input {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: 'Inter', sans-serif;
 }
